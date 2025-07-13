@@ -1,0 +1,44 @@
+{
+  "name": "gym-management",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "setup-db": "node --require dotenv/config scripts/setup-db.js dotenv_config_path=.env.local"
+  },
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-navigation-menu": "^1.1.4",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@radix-ui/themes": "^3.2.1",
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^3.0.6",
+    "mongodb": "^6.17.0",
+    "next": "15.3.4",
+    "next-auth": "^4.24.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.59.0",
+    "react-hot-toast": "^2.5.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "dotenv": "^17.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}
