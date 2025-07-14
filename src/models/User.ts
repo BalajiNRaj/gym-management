@@ -5,24 +5,24 @@ export interface IUser {
   email: string;
   hashedPassword: string;
   accountNumber: string;
-  role: 'admin' | 'trainer' | 'user'; // user = student
+  role: 'admin' | 'trainer' | 'user'; // user = member
   status: 'active' | 'inactive';
   avatar?: string;
   image?: string;
   
-  // Physical attributes (for students/trainers)
+  // Physical attributes (for members/trainers)
   age?: number;
   weight?: number; // in kg
   height?: number; // in cm
   gender?: 'male' | 'female';
   
-  // Fitness specific (for students)
+  // Fitness specific (for members)
   goal?: 'gain_weight' | 'lose_weight' | 'get_fitter' | 'get_stronger' | 'get_healthier';
   level?: 'beginner' | 'intermediate' | 'advanced';
   
   // Relationships
   adminId?: string; // Reference to admin who created this user
-  trainerId?: string; // For students - their assigned trainer
+  trainerId?: string; // For members - their assigned trainer
   
   // Activity tracking
   isActive?: boolean; // Online status
@@ -74,8 +74,8 @@ export const mockUsers: IUser[] = [
   },
   {
     id: '3',
-    name: 'Jane Student',
-    email: 'student@gym.com',
+    name: 'Jane Member',
+    email: 'member@gym.com',
     hashedPassword: 'hashed_password',
     accountNumber: '000000000003',
     role: 'user',

@@ -171,7 +171,7 @@ const MembersPage = () => {
   const stats = useMemo(() => {
     return {
       total: users.length,
-      students: users.filter(u => u.role === 'user').length,
+      members: users.filter(u => u.role === 'user').length,
       trainers: users.filter(u => u.role === 'trainer').length,
       active: users.filter(u => u.isActive).length
     };
@@ -209,7 +209,7 @@ const MembersPage = () => {
       <Flex align="center" justify="between" mb="6">
         <Box>
           <Heading size="5">Manage Users</Heading>
-          <Text color="gray" size="2">Manage students and trainers</Text>
+          <Text color="gray" size="2">Manage members and trainers</Text>
         </Box>
         <Button asChild color="blue">
           <Link href="/dashboard/add-user">
@@ -228,8 +228,8 @@ const MembersPage = () => {
         </Card>
         <Card style={{ padding: "16px" }}>
           <Flex direction="column" gap="1">
-            <Text size="1" color="gray">Students</Text>
-            <Text size="5" weight="bold" color="blue">{stats.students}</Text>
+            <Text size="1" color="gray">Members</Text>
+            <Text size="5" weight="bold" color="blue">{stats.members}</Text>
           </Flex>
         </Card>
         <Card style={{ padding: "16px" }}>
@@ -263,7 +263,7 @@ const MembersPage = () => {
             <Select.Trigger placeholder="Filter by role" />
             <Select.Content>
               <Select.Item value="all">All Roles</Select.Item>
-              <Select.Item value="user">Students</Select.Item>
+              <Select.Item value="user">Members</Select.Item>
               <Select.Item value="trainer">Trainers</Select.Item>
               <Select.Item value="admin">Admins</Select.Item>
             </Select.Content>
@@ -356,7 +356,7 @@ const MembersPage = () => {
                       }
                       variant="soft"
                     >
-                      {user.role === 'user' ? 'Student' : 
+                      {user.role === 'user' ? 'Member' : 
                        user.role === 'trainer' ? 'Trainer' : 'Admin'}
                     </Badge>
                   </Table.Cell>

@@ -38,8 +38,8 @@ interface Exercise {
 
 interface ExerciseAssignment {
   id: string;
-  studentId: string;
-  studentName: string;
+  memberId: string;
+  memberName: string;
   exercises: {
     exerciseId: string;
     exerciseName: string;
@@ -106,8 +106,8 @@ const mockExercises: Exercise[] = [
 const mockAssignments: ExerciseAssignment[] = [
   {
     id: "1",
-    studentId: "1",
-    studentName: "John Doe",
+    memberId: "1",
+    memberName: "John Doe",
     exercises: [
       {
         exerciseId: "1",
@@ -324,7 +324,7 @@ export default function ExercisePage() {
                 <Table.Root>
                   <Table.Header>
                     <Table.Row>
-                      <Table.ColumnHeaderCell>Student</Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell>Member</Table.ColumnHeaderCell>
                       <Table.ColumnHeaderCell>Exercises</Table.ColumnHeaderCell>
                       <Table.ColumnHeaderCell>Period</Table.ColumnHeaderCell>
                       <Table.ColumnHeaderCell>Assigned By</Table.ColumnHeaderCell>
@@ -335,7 +335,7 @@ export default function ExercisePage() {
                     {mockAssignments.map((assignment) => (
                       <Table.Row key={assignment.id}>
                         <Table.Cell>
-                          <Text weight="medium">{assignment.studentName}</Text>
+                          <Text weight="medium">{assignment.memberName}</Text>
                         </Table.Cell>
                         <Table.Cell>
                           <Flex direction="column" gap="1">
@@ -451,16 +451,16 @@ export default function ExercisePage() {
           <Dialog.Content style={{ maxWidth: '600px' }}>
             <Dialog.Title>Assign Exercise</Dialog.Title>
             <Dialog.Description size="2" mb="4">
-              Assign exercises to a student with specific parameters.
+              Assign exercises to a member with specific parameters.
             </Dialog.Description>
 
             <Flex direction="column" gap="3">
               <Box>
                 <Text size="2" weight="medium" style={{ display: 'block', marginBottom: '8px' }}>
-                  Student
+                  Member
                 </Text>
                 <Select.Root>
-                  <Select.Trigger placeholder="Select student" />
+                  <Select.Trigger placeholder="Select member" />
                   <Select.Content>
                     <Select.Item value="1">John Doe</Select.Item>
                     <Select.Item value="2">Jane Smith</Select.Item>

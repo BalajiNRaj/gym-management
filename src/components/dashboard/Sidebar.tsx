@@ -24,7 +24,6 @@ export default function DashboardSidebar() {
   const userManagementItems = [
     { label: 'Add User', href: '/dashboard/add-user', icon: <PlusIcon /> },
     { label: 'Members', href: '/dashboard/members', icon: <PersonIcon /> },
-    { label: 'Students', href: '/dashboard/students', icon: <PersonIcon /> },
     { label: 'Trainers', href: '/dashboard/trainers', icon: <BackpackIcon /> },
   ];
 
@@ -48,13 +47,7 @@ export default function DashboardSidebar() {
     { label: 'Profile', href: '/dashboard/profile', icon: <PersonIcon /> },
   ];
 
-  // Student-specific navigation items (for user role)
-  const studentNavItems = [
-    { label: 'My Attendance', href: '/dashboard/attendance', icon: <CalendarIcon /> },
-    { label: 'My Fees', href: '/dashboard/fees', icon: <ArchiveIcon /> },
-    { label: 'My Exercise', href: '/dashboard/exercise', icon: <ActivityLogIcon /> },
-    { label: 'My Diet Sheet', href: '/dashboard/diet', icon: <ReaderIcon /> },
-  ];
+
 
   return (
     <Box 
@@ -110,17 +103,7 @@ export default function DashboardSidebar() {
           </Box>
           <NavSection items={quickActionsItems} />
 
-          <Separator size="4" my="3" />
-          
-          {/* Student Features (hidden by default, would be shown based on user role) */}
-          <Box mb="3" style={{ display: 'none' }}>
-            <Text size="1" weight="medium" color="gray" style={{ textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Student Features
-            </Text>
-          </Box>
-          <Box style={{ display: 'none' }}>
-            <NavSection items={studentNavItems} />
-          </Box>
+
         </Flex>
       </ScrollArea>
     </Box>

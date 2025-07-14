@@ -177,7 +177,7 @@ const AddMemberPage = () => {
                           {sessionUser?.role === "admin" && (
                             <Select.Item value="trainer">Trainer</Select.Item>
                           )}
-                          <Select.Item value="user">Student</Select.Item>
+                          <Select.Item value="user">Member</Select.Item>
                         </Select.Content>
                       </Select.Root>
                     </Box>
@@ -331,7 +331,7 @@ const AddMemberPage = () => {
             </Flex>
           </Card>
 
-          {/* Fitness Information (only for students) */}
+          {/* Fitness Information (only for members) */}
           {role === 'user' && (
             <Card style={{ padding: "16px", marginTop: "24px" }}>
               <Flex direction="column" gap="4">

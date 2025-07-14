@@ -80,14 +80,6 @@ const ListItems = () => {
       {(user?.role === "admin" || user?.role === "trainer") && (
         <>
           <Link 
-            href="/dashboard/students"
-            className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <PersonIcon className="w-5 h-5" />
-            <span>Students</span>
-          </Link>
-
-          <Link 
             href="/dashboard/attendance"
             className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
           >

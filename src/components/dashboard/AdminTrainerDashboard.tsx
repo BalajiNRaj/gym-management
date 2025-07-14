@@ -27,7 +27,7 @@ const mockData = {
   },
   users: {
     onlineUsers: 45,
-    students: 120,
+    members: 120,
     count: 150,
   },
   attendances: {
@@ -101,8 +101,8 @@ const AdminTrainerDashboard: React.FC<AdminTrainerDashboardProps> = ({ user }) =
         />
         
         <AppWidgetSummary
-          title="Students"
-          total={`${mockData.users.students}`}
+          title="Members"
+          total={`${mockData.users.members}`}
           color="yellow"
           icon={<PersonIcon width={32} height={32} />}
         />

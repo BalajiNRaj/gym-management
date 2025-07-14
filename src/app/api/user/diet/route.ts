@@ -16,10 +16,10 @@ export async function GET() {
 
     const db = await getDb();
     
-    // Get diet assignments for the current user (student)
+    // Get diet assignments for the current user (member)
     const diets = await db.collection('dietAssignments')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .findOne({ studentId: new ObjectId((session.user as any).id) });
+      .findOne({ memberId: new ObjectId((session.user as any).id) });
 
     if (!diets) {
       return NextResponse.json({

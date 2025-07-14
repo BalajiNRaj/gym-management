@@ -1,15 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signIn, useSession } from 'next-auth/react';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { 
   Box, 
   Container, 
   Card, 
   Flex, 
   Heading, 
-  Text, 
   TextField, 
   Button, 
   Callout,
@@ -30,16 +29,15 @@ export default function SignInPage() {
     email: '',
     password: '',
   });
-  const [testUser, setTestUser] = useState<{
-    email: string;
-    password: string;
-  }>({
-    email: '',
-    password: '',
-  });
 
   const { status } = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.push('/dashboard');
+    }
+  }, [status, router]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,8 +46,8 @@ export default function SignInPage() {
 
     try {
       const result = await signIn('credentials', {
-        email: formData.email || testUser.email,
-        password: formData.password || testUser.password,
+        email: formData.email,
+        password: formData.password,
         redirect: false,
       });
 
@@ -72,10 +70,6 @@ export default function SignInPage() {
 
   if (status === 'loading') {
     return <Loader />;
-  }
-
-  if (status === 'authenticated') {
-    return redirect('/dashboard');
   }
 
   return (
@@ -126,7 +120,7 @@ export default function SignInPage() {
                     <TextField.Root
                       placeholder="Email Address"
                       type="email"
-                      value={formData.email || testUser.email}
+                      value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
                       style={{ width: '100%' }}
                       size="3"
@@ -143,7 +137,7 @@ export default function SignInPage() {
                     <TextField.Root
                       placeholder="Password"
                       type="password"
-                      value={formData.password || testUser.password}
+                      value={formData.password}
                       onChange={(e) => handleInputChange('password', e.target.value)}
                       style={{ width: '100%' }}
                       size="3"

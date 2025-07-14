@@ -33,7 +33,7 @@ interface Notification {
   message: string;
   type: 'info' | 'warning' | 'success' | 'error';
   priority: 'low' | 'medium' | 'high';
-  recipientType: 'all' | 'students' | 'trainers' | 'specific';
+  recipientType: 'all' | 'members' | 'trainers' | 'specific';
   recipients?: string[];
   sender: string;
   isRead: boolean;
@@ -48,7 +48,7 @@ const mockNotifications: Notification[] = [
     message: "Welcome to our gym! We're excited to have you as part of our fitness community.",
     type: "success",
     priority: "medium",
-    recipientType: "students",
+    recipientType: "members",
     sender: "Admin",
     isRead: true,
     createdAt: "2024-01-20T09:00:00Z",
@@ -72,7 +72,7 @@ const mockNotifications: Notification[] = [
     message: "A new exercise 'HIIT Cardio Blast' has been added to your workout plan. Check it out in your exercise section.",
     type: "info",
     priority: "low",
-    recipientType: "students",
+    recipientType: "members",
     sender: "Alex Rodriguez",
     isRead: false,
     createdAt: "2024-01-26T11:00:00Z"
@@ -325,7 +325,7 @@ export default function NotificationsPage() {
                   <Table.Cell>
                     <Text size="1" color="gray">
                       {notification.recipientType === 'all' ? 'All Users' : 
-                       notification.recipientType === 'students' ? 'All Students' :
+                       notification.recipientType === 'members' ? 'All Members' :
                        notification.recipientType === 'trainers' ? 'All Trainers' :
                        `${notification.recipients?.length || 0} Users`}
                     </Text>
@@ -466,7 +466,7 @@ export default function NotificationsPage() {
                   <Select.Trigger placeholder="Select recipients" />
                   <Select.Content>
                     <Select.Item value="all">All Users</Select.Item>
-                    <Select.Item value="students">All Students</Select.Item>
+                    <Select.Item value="members">All Members</Select.Item>
                     <Select.Item value="trainers">All Trainers</Select.Item>
                     <Select.Item value="specific">Specific Users</Select.Item>
                   </Select.Content>

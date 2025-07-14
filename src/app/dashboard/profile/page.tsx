@@ -36,7 +36,7 @@ interface UserProfile {
   emergencyPhone: string;
   joinDate: string;
   membershipStatus: string;
-  // Fitness related fields for students
+  // Fitness related fields for members
   fitnessGoal?: string;
   fitnessLevel?: string;
   preferredWorkoutTime?: string;
@@ -98,7 +98,7 @@ export default function ProfilePage() {
 
   const getRoleDisplay = (role: string) => {
     switch (role) {
-      case "user": return "Student";
+      case "user": return "Member";
       case "trainer": return "Trainer";
       case "admin": return "Administrator";
       default: return role;
@@ -341,7 +341,7 @@ export default function ProfilePage() {
             </Card>
           </Tabs.Content>
 
-          {/* Fitness Information Tab (Students only) */}
+          {/* Fitness Information Tab (Members only) */}
           {profileData.role === 'user' && (
             <Tabs.Content value="fitness">
               <Card>

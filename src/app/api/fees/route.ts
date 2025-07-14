@@ -42,19 +42,19 @@ export async function GET() {
       unpaidAmount: 0
     };
 
-    // Get all fees with student information
+    // Get all fees with member information
     const fees = await db.collection('fees')
       .aggregate([
         {
           $lookup: {
             from: 'users',
-            localField: 'studentId',
+            localField: 'memberId',
             foreignField: '_id',
-            as: 'student'
+            as: 'member'
           }
         },
         {
-          $unwind: '$student'
+          $unwind: '$member'
         },
         {
           $project: {

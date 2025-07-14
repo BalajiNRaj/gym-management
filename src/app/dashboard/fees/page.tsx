@@ -26,9 +26,9 @@ import {
 
 interface FeeRecord {
   id: string;
-  studentId: string;
-  studentName: string;
-  studentEmail: string;
+  memberId: string;
+  memberName: string;
+  memberEmail: string;
   amount: number;
   dueDate: string;
   paidDate?: string;
@@ -40,9 +40,9 @@ interface FeeRecord {
 const mockFees: FeeRecord[] = [
   {
     id: "1",
-    studentId: "1",
-    studentName: "John Doe",
-    studentEmail: "john.doe@example.com",
+    memberId: "1",
+    memberName: "John Doe",
+    memberEmail: "john.doe@example.com",
     amount: 50,
     dueDate: "2024-01-31",
     paidDate: "2024-01-28",
@@ -52,9 +52,9 @@ const mockFees: FeeRecord[] = [
   },
   {
     id: "2",
-    studentId: "2",
-    studentName: "Jane Smith",
-    studentEmail: "jane.smith@example.com",
+    memberId: "2",
+    memberName: "Jane Smith",
+    memberEmail: "jane.smith@example.com",
     amount: 75,
     dueDate: "2024-01-31",
     status: "unpaid",
@@ -62,9 +62,9 @@ const mockFees: FeeRecord[] = [
   },
   {
     id: "3",
-    studentId: "3",
-    studentName: "Mike Johnson",
-    studentEmail: "mike.johnson@example.com",
+    memberId: "3",
+    memberName: "Mike Johnson",
+    memberEmail: "mike.johnson@example.com",
     amount: 50,
     dueDate: "2024-01-15",
     status: "overdue",
@@ -72,9 +72,9 @@ const mockFees: FeeRecord[] = [
   },
   {
     id: "4",
-    studentId: "4",
-    studentName: "Sarah Wilson",
-    studentEmail: "sarah.wilson@example.com",
+    memberId: "4",
+    memberName: "Sarah Wilson",
+    memberEmail: "sarah.wilson@example.com",
     amount: 100,
     dueDate: "2024-02-15",
     status: "unpaid",
@@ -82,9 +82,9 @@ const mockFees: FeeRecord[] = [
   },
   {
     id: "5",
-    studentId: "5",
-    studentName: "David Brown",
-    studentEmail: "david.brown@example.com",
+    memberId: "5",
+    memberName: "David Brown",
+    memberEmail: "david.brown@example.com",
     amount: 60,
     dueDate: "2024-01-31",
     paidDate: "2024-01-30",
@@ -102,7 +102,7 @@ export default function FeesPage() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [showAddFeeDialog, setShowAddFeeDialog] = useState(false);
   const [newFeeData, setNewFeeData] = useState({
-    studentName: "",
+    memberName: "",
     amount: "",
     dueDate: "",
     notes: ""
@@ -112,8 +112,8 @@ export default function FeesPage() {
 
   const filteredAndSortedFees = useMemo(() => {
     const filtered = mockFees.filter(fee => {
-      const matchesSearch = fee.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           fee.studentEmail.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = fee.memberName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           fee.memberEmail.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesStatus = statusFilter === "all" || fee.status === statusFilter;
       return matchesSearch && matchesStatus;
     });
@@ -159,7 +159,7 @@ export default function FeesPage() {
     // Mock API call
     console.log("Adding fee:", newFeeData);
     setShowAddFeeDialog(false);
-    setNewFeeData({ studentName: "", amount: "", dueDate: "", notes: "" });
+    setNewFeeData({ memberName: "", amount: "", dueDate: "", notes: "" });
   };
 
   const handleSendReminder = (feeId: string) => {
@@ -228,7 +228,7 @@ export default function FeesPage() {
                 }} 
               />
               <TextField.Root
-                placeholder="Search by student name or email..."
+                placeholder="Search by member name or email..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 style={{ paddingLeft: '32px' }}
@@ -254,10 +254,10 @@ export default function FeesPage() {
                 <Table.ColumnHeaderCell>
                   <Button 
                     variant="ghost" 
-                    onClick={() => handleSort("studentName")}
+                    onClick={() => handleSort("memberName")}
                     style={{ padding: 0, height: 'auto' }}
                   >
-                    Student {sortBy === "studentName" && (sortOrder === "asc" ? "↑" : "↓")}
+                    Member {sortBy === "memberName" && (sortOrder === "asc" ? "↑" : "↓")}
                   </Button>
                 </Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>
@@ -289,8 +289,8 @@ export default function FeesPage() {
                 <Table.Row key={fee.id}>
                   <Table.Cell>
                     <Box>
-                      <Text weight="medium">{fee.studentName}</Text>
-                      <Text size="1" color="gray">{fee.studentEmail}</Text>
+                      <Text weight="medium">{fee.memberName}</Text>
+                      <Text size="1" color="gray">{fee.memberEmail}</Text>
                     </Box>
                   </Table.Cell>
                   <Table.Cell>
@@ -366,18 +366,18 @@ export default function FeesPage() {
           <Dialog.Content style={{ maxWidth: '500px' }}>
             <Dialog.Title>Add New Fee</Dialog.Title>
             <Dialog.Description size="2" mb="4">
-              Add a fee record for a student.
+              Add a fee record for a member.
             </Dialog.Description>
 
             <Flex direction="column" gap="3">
               <Box>
                 <Text size="2" weight="medium" style={{ display: 'block', marginBottom: '8px' }}>
-                  Student Name
+                  Member Name
                 </Text>
                 <TextField.Root
-                  placeholder="Enter student name"
-                  value={newFeeData.studentName}
-                  onChange={(e) => setNewFeeData(prev => ({ ...prev, studentName: e.target.value }))}
+                  placeholder="Enter member name"
+                  value={newFeeData.memberName}
+                  onChange={(e) => setNewFeeData(prev => ({ ...prev, memberName: e.target.value }))}
                 />
               </Box>
               <Box>

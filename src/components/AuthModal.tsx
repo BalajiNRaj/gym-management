@@ -42,7 +42,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     confirmPassword: '',
     role: 'admin' as 'admin' | 'trainer' | 'user',
     
-    // Additional fields for students
+    // Additional fields for members
     age: 18,
     weight: 50,
     height: 170,
@@ -95,7 +95,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
         password: registerData.password,
         role: registerData.role,
         
-        // Include additional fields for students
+        // Include additional fields for members
         ...(registerData.role === 'user' && {
           age: registerData.age,
           weight: registerData.weight,
@@ -141,7 +141,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     }
   };
 
-  const isStudent = registerData.role === 'user';
+  const isMember = registerData.role === 'user';
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -242,7 +242,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                         <Select.Content>
                           <Select.Item value="admin">Admin</Select.Item>
                           <Select.Item value="trainer">Trainer</Select.Item>
-                          <Select.Item value="user">Student</Select.Item>
+                          <Select.Item value="user">Member</Select.Item>
                         </Select.Content>
                       </Select.Root>
                     </Box>
@@ -289,10 +289,10 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                     </Box>
                   </Grid>
 
-                  {isStudent && (
+                  {isMember && (
                     <>
                       <Text size="3" weight="bold" style={{ marginTop: '16px' }}>
-                        Student Information
+                        Member Information
                       </Text>
                       
                       <Grid columns="3" gap="3">

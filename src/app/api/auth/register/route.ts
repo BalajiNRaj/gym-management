@@ -59,17 +59,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate additional fields for students
+    // Validate additional fields for members
     if (role === 'user') {
       if (!age || age < 18) {
         return NextResponse.json(
-          { error: 'Age is required and must be at least 18 for students' },
+          { error: 'Age is required and must be at least 18 for members' },
           { status: 400 }
         );
       }
       if (!gender || !['male', 'female'].includes(gender)) {
         return NextResponse.json(
-          { error: 'Gender is required for students (male/female)' },
+          { error: 'Gender is required for members (male/female)' },
           { status: 400 }
         );
       }
@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
       status: 'active',
       image: image || '',
       
-      // Physical attributes (for students/trainers)
+      // Physical attributes (for members/trainers)
       ...(role === 'user' && {
         age: parseInt(age),
         weight: weight ? parseInt(weight) : undefined,

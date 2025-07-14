@@ -16,10 +16,10 @@ export async function GET() {
 
     const db = await getDb();
     
-    // Get exercise assignments for the current user (student)
+    // Get exercise assignments for the current user (member)
     const exercises = await db.collection('exerciseAssignments')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .find({ studentId: new ObjectId((session.user as any).id) })
+      .find({ memberId: new ObjectId((session.user as any).id) })
       .sort({ createdAt: -1 })
       .toArray();
 

@@ -16,10 +16,10 @@ export async function GET() {
 
     const db = await getDb();
     
-    // Get attendance records for the current user (student)
+    // Get attendance records for the current user (member)
     const attendances = await db.collection('attendance')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .find({ studentId: new ObjectId((session.user as any).id) })
+      .find({ memberId: new ObjectId((session.user as any).id) })
       .sort({ createdAt: -1 })
       .toArray();
 
@@ -64,7 +64,7 @@ export async function PATCH(request: NextRequest) {
       { 
         _id: new ObjectId(attendanceId),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        studentId: new ObjectId((session.user as any).id)
+        memberId: new ObjectId((session.user as any).id)
       },
       { 
         $set: { 
